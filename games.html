@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Игры — Брутальный сайт</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="logo-block">
+                <span class="logo-mark">☰</span>
+                <div>
+                    <p class="site-brand">BRUTAL</p>
+                    <p class="site-tag">Игровой зал</p>
+                </div>
+            </div>
+            <nav class="site-nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="about.html" class="nav-link">Обо мне</a>
+                <a href="projects.html" class="nav-link">Проекты</a>
+                <a href="games.html" class="nav-link active">Игры</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero hero-small">
+                <div class="hero-body">
+                    <span class="hero-label">Игровой зал</span>
+                    <h1>Четыре игры в одной тёмной зоне.</h1>
+                    <p class="hero-copy">Выбери классическую змейку, раннера, клеточную симуляцию или сапёра. Вся логика в чистом JS.</p>
+                    <div class="hero-actions">
+                        <a href="#games" class="btn btn-primary">Начать игру</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="games" class="section">
+                <div class="section-header">
+                    <span class="section-label">Игры</span>
+                    <h2>Сменный режим и минималистичный контроль</h2>
+                </div>
+
+                <div class="game-selector fade-up">
+                    <button data-game="snake" class="active">Змейка</button>
+                    <button data-game="dino">Dino Run</button>
+                    <button data-game="life">Жизнь</button>
+                    <button data-game="minesweeper">Сапёр</button>
+                </div>
+
+                <div class="game-display fade-up delay-1">
+                    <div class="game-info">
+                        <h3 id="gameTitle">Выберите игру</h3>
+                        <p id="gameDescription">Нажми на кнопку выше, чтобы запустить выбранную игру и начать играть прямо в браузере.</p>
+                        <div id="gameControls"></div>
+                    </div>
+                    <div class="game-panel">
+                        <canvas id="gameCanvas" width="640" height="360"></canvas>
+                        <div id="minesweeperGrid" class="game-grid hidden"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div>
+                <p>Тяжёлая типографика, нет ни одного закругления, только острые углы и жёлтый контраст.</p>
+            </div>
+            <div>
+                <a href="index.html" class="footer-link">Главная</a>
+                <a href="about.html" class="footer-link">Обо мне</a>
+                <a href="projects.html" class="footer-link">Проекты</a>
+                <a href="games.html" class="footer-link">Игры</a>
+                <a href="contacts.html" class="footer-link">Контакты</a>
+            </div>
+        </footer>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
