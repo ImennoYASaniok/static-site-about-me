@@ -3,14 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя первая страница</title>
-    <link rel="stylesheet" href="style.css">
+    <title>&lt;заполните это поле именем&gt;</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Привет, мир!</h1>
-    <p>Это моя статическая страница.</p>
+    <div class="page-shell">
+        <header class="site-header">
+            <span class="brand">&lt;заполните это поле заголовком&gt;</span>
+            <nav class="site-nav">
+                <a href="index.html" class="nav-link active">Главная</a>
+                <a href="about.html" class="nav-link">Обо мне</a>
+                <a href="projects.html" class="nav-link">Проекты</a>
+                <a href="games.html" class="nav-link">Игры</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </nav>
+        </header>
 
-    <!-- Здесь можно подключить JavaScript -->
-    <script src="script.js"></script>
+        <main>
+            <section class="hero" id="hero">
+                <div class="hero-glow"></div>
+                <div class="hero-content">
+                    <p class="eyebrow">Привет, система готова</p>
+                    <h1><span class="hero-name">&lt;заполните это поле именем&gt;</span></h1>
+                    <p class="hero-role">Я <span class="typed" data-text="&lt;заполните это поле ролью&gt;|&lt;заполните это поле специализацией&gt;|&lt;заполните это поле направлением&gt;"></span></p>
+                    <p class="hero-copy">&lt;заполните это поле кратким предложением о себе&gt;</p>
+                    <div class="hero-actions">
+                        <a href="about.html" class="btn btn-primary">Подробнее обо мне</a>
+                        <a href="projects.html" class="btn btn-secondary">Мои проекты</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section intro-grid">
+                <div class="card-panel fade-up">
+                    <span class="section-highlight">Обзор</span>
+                    <h3>Моя матрица</h3>
+                    <p>&lt;заполните это поле о своей деятельности и стиле работы&gt;</p>
+                    <a href="about.html" class="link">Перейти к биографии</a>
+                </div>
+                <div class="card-panel fade-up delay-1">
+                    <span class="section-highlight">Проекты</span>
+                    <h3>Архив реализаций</h3>
+                    <p>&lt;заполните это поле о ведении проектов, хакатонах или задачах&gt;</p>
+                    <a href="projects.html" class="link">Посмотреть проекты</a>
+                </div>
+                <div class="card-panel fade-up delay-2">
+                    <span class="section-highlight">Контакты</span>
+                    <h3>Связаться</h3>
+                    <p>&lt;заполните это поле о том, как с вами можно связаться&gt;</p>
+                    <a href="contacts.html" class="link">Написать</a>
+                </div>
+            </section>
+
+            <section class="section section-panel fade-up delay-3">
+                <span class="section-label">Метка</span>
+                <h2>Ретро-брютал стиль</h2>
+                <p>&lt;заполните это поле про концепцию сайта: пиксели, советский ретрофутуризм и цифровой брутализм&gt;</p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-copy fade-up">
+                <h2>Футер данных</h2>
+                <p>&lt;заполните это поле кратким слоганом для footer&gt;</p>
+            </div>
+            <div class="footer-links fade-up delay-1">
+                <a href="contacts.html" class="footer-link">Telegram</a>
+                <a href="contacts.html" class="footer-link">GitHub</a>
+                <a href="contacts.html" class="footer-link">Email</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
