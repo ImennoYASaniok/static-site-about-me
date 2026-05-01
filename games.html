@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Игры — Брутальный сайт</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <script type="module" src="/src/main.js"></script>
 </head>
 <body>
     <div class="page-shell">
@@ -31,9 +31,9 @@
                 <div class="hero-body">
                     <span class="hero-label">Игровой зал</span>
                     <h1>Четыре игры в одной тёмной зоне.</h1>
-                    <p class="hero-copy">Выбери классическую змейку, раннера, клеточную симуляцию или сапёра. Вся логика в чистом JS.</p>
+                    <p class="hero-copy">Выбирай отдельную игру и запускай её на своей странице.</p>
                     <div class="hero-actions">
-                        <a href="#games" class="btn btn-primary">Начать игру</a>
+                        <a href="#games" class="btn btn-primary">Перейти к играм</a>
                     </div>
                 </div>
             </section>
@@ -41,26 +41,34 @@
             <section id="games" class="section">
                 <div class="section-header">
                     <span class="section-label">Игры</span>
-                    <h2>Сменный режим и минималистичный контроль</h2>
+                    <h2>Каждая игра на отдельной странице</h2>
                 </div>
 
-                <div class="game-selector fade-up">
-                    <button data-game="snake" class="active">Змейка</button>
-                    <button data-game="dino">Dino Run</button>
-                    <button data-game="life">Жизнь</button>
-                    <button data-game="minesweeper">Сапёр</button>
-                </div>
-
-                <div class="game-display fade-up delay-1">
-                    <div class="game-info">
-                        <h3 id="gameTitle">Выберите игру</h3>
-                        <p id="gameDescription">Нажми на кнопку выше, чтобы запустить выбранную игру и начать играть прямо в браузере.</p>
-                        <div id="gameControls"></div>
-                    </div>
-                    <div class="game-panel">
-                        <canvas id="gameCanvas" width="640" height="360"></canvas>
-                        <div id="minesweeperGrid" class="game-grid hidden"></div>
-                    </div>
+                <div class="intro-grid">
+                    <article class="card-panel fade-up">
+                        <span class="section-highlight">Змейка</span>
+                        <h3>Snake</h3>
+                        <p>Управляй змейкой, собирай яблоки и увеличивай длину.</p>
+                        <a href="games/snake.html" class="link">Играть</a>
+                    </article>
+                    <article class="card-panel fade-up delay-1">
+                        <span class="section-highlight">Dino Run</span>
+                        <h3>Раннер</h3>
+                        <p>Прыгай через препятствия и ставь новый рекорд.</p>
+                        <a href="games/dino.html" class="link">Играть</a>
+                    </article>
+                    <article class="card-panel fade-up delay-2">
+                        <span class="section-highlight">Жизнь</span>
+                        <h3>Клеточная симуляция</h3>
+                        <p>Управляй размером поля, включай сетку и наблюдай эволюцию.</p>
+                        <a href="games/life_game.html" class="link">Играть</a>
+                    </article>
+                    <article class="card-panel fade-up delay-3">
+                        <span class="section-highlight">Сапёр</span>
+                        <h3>Minesweeper</h3>
+                        <p>Открывай клетки, помечай флаги и избегай мин.</p>
+                        <a href="games/minesweeper.html" class="link">Играть</a>
+                    </article>
                 </div>
             </section>
         </main>
@@ -78,6 +86,5 @@
             </div>
         </footer>
     </div>
-    <script src="js/script.js"></script>
 </body>
 </html>

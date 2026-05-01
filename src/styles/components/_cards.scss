@@ -1,0 +1,127 @@
+
+.intro-grid,
+.about-grid,
+.skills-columns,
+.projects-grid,
+.achievements-grid,
+.contact-grid,
+.card-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.intro-grid,
+.card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.about-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.skills-columns {
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+}
+
+.contact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.section-panel,
+.about-card,
+.skill-block,
+.achievement-item,
+.project-card,
+.footer-box,
+.card-panel,
+.contact-card {
+    padding: 26px;
+    background-color: rgba(12, 6, 18, 0.98);
+    border: 3px solid rgba(255, 140, 0, 0.28);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 45px rgba(0,0,0,0.32);
+}
+
+.section-panel {
+    padding: 32px;
+    background-color: rgba(16, 10, 20, 0.96);
+    border: 3px dashed rgba(255, 128, 30, 0.32);
+}
+
+.section-panel p {
+    margin: 16px 0 0;
+}
+
+.card-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+    justify-content: space-between;
+}
+
+.card-meta,
+.section-note,
+.detail-text,
+.footer-item {
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+.project-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.project-tag {
+    display: inline-flex;
+    padding: 10px 14px;
+    background-color: rgba(0, 0, 0, 0.16);
+    border: 2px solid rgba(255, 145, 0, 0.28);
+    color: var(--accent-bright);
+    font-family: 'VPCH2', sans-serif;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+}
+
+.project-meta {
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+.project-card-1 {
+    background-color: rgba(255, 124, 24, 0.15);
+}
+
+.project-card-2 {
+    background-color: rgba(255, 76, 0, 0.16);
+}
+
+.project-card-3 {
+    background-color: rgba(255, 206, 91, 0.16);
+}
+
+.project-card-4 {
+    background-color: rgba(255, 75, 125, 0.16);
+}
+
+.skill-pill {
+    display: inline-flex;
+    margin: 10px 10px 0 0;
+    padding: 10px 14px;
+    background-color: rgba(255, 127, 17, 0.16);
+    border: 2px solid rgba(255, 146, 40, 0.28);
+    color: var(--accent-bright);
+    font-size: 0.95rem;
+}

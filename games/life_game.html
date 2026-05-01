@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Жизнь — Игры</title>
+    <script type="module" src="/src/main.js"></script>
+</head>
+<body data-game="life">
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="logo-block">
+                <span class="logo-mark">☰</span>
+                <div>
+                    <p class="site-brand">BRUTAL</p>
+                    <p class="site-tag">Жизнь</p>
+                </div>
+            </div>
+            <nav class="site-nav">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../about.html" class="nav-link">Обо мне</a>
+                <a href="../projects.html" class="nav-link">Проекты</a>
+                <a href="../games.html" class="nav-link active">Игры</a>
+                <a href="../contacts.html" class="nav-link">Контакты</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero hero-small">
+                <div class="hero-body">
+                    <span class="hero-label">Жизнь</span>
+                    <h1>Клеточная симуляция с настройкой.</h1>
+                    <p class="hero-copy">Устанавливай поле, включай сетку и наблюдай за эволюцией клеток.</p>
+                    <div class="hero-actions">
+                        <a href="../games.html" class="btn btn-primary">К каталогу игр</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="game-display fade-up delay-1">
+                    <div class="game-info">
+                        <h3 id="gameTitle"></h3>
+                        <p id="gameDescription"></p>
+                        <div id="gameControls"></div>
+                    </div>
+                    <div class="game-panel">
+                        <canvas id="gameCanvas" width="640" height="360"></canvas>
+                        <div id="minesweeperGrid" class="game-grid hidden"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

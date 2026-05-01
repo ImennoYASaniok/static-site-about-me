@@ -1,66 +1,3 @@
-@font-face {
-    font-family: 'VPCH2';
-    src: url('../assets/fonts/VPCH2.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'EpilepsySans';
-    src: url('../assets/fonts/EpilepsySans.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'EpilepsySans';
-    src: url('../assets/fonts/EpilepsySansBold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-:root {
-    color-scheme: dark;
-    --bg: #09060d;
-    --surface: rgba(255, 147, 51, 0.1);
-    --surface-strong: rgba(255, 135, 35, 0.16);
-    --border: rgba(255, 152, 0, 0.35);
-    --text: #f5e0a7;
-    --text-muted: #d8c399;
-    --accent: #ff7f11;
-    --accent-bright: #ffc24b;
-    --accent-pink: #ff5733;
-    --shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
-    --radius: 16px;
-    font-family: 'EpilepsySans', Arial, sans-serif;
-}
-
-* {
-    box-sizing: border-box;
-    border-radius: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    background-color: #09060d;
-    color: var(--text);
-    text-rendering: geometricPrecision;
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-body,
-button,
-input,
-textarea,
-a {
-    font-family: 'EpilepsySans', Arial, sans-serif;
-}
 
 .page-shell {
     position: relative;
@@ -96,6 +33,38 @@ a {
     gap: 12px;
 }
 
+.logo-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 2px solid rgba(255, 145, 0, 0.28);
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--accent-bright);
+    font-size: 1.1rem;
+}
+
+.site-brand {
+    margin: 0;
+    font-family: 'VPCH2', sans-serif;
+    font-size: 1rem;
+    color: var(--accent-bright);
+    letter-spacing: 0.28em;
+}
+
+.site-tag {
+    margin: 6px 0 0;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+}
+
 .nav-link {
     display: inline-flex;
     align-items: center;
@@ -124,6 +93,35 @@ a {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.hero-small {
+    padding: 70px 24px 60px;
+    min-height: auto;
+}
+
+.hero-body {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 34px 34px 30px;
+    border: 3px solid rgba(255, 140, 0, 0.55);
+    background-color: rgba(12, 6, 18, 0.98);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 18px 45px rgba(0,0,0,0.35);
+}
+
+.hero-label {
+    display: inline-flex;
+    padding: 10px 18px;
+    background-color: rgba(0, 0, 0, 0.16);
+    border: 2px solid rgba(255, 145, 0, 0.28);
+    color: var(--accent-bright);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
 }
 
 .hero-glow {
@@ -197,81 +195,6 @@ a {
     gap: 16px;
 }
 
-.game-selector {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    margin-bottom: 24px;
-}
-
-.game-selector button {
-    padding: 10px 18px;
-    border: 2px solid rgba(255, 145, 0, 0.28);
-    background-color: rgba(0, 0, 0, 0.08);
-    color: var(--text);
-    cursor: pointer;
-    font-family: 'VPCH2', sans-serif;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-
-.game-selector button.active {
-    background-color: rgba(255, 110, 8, 0.22);
-    color: #fff;
-}
-
-.game-display {
-    display: grid;
-    gap: 24px;
-}
-
-.game-info {
-    padding: 18px;
-    border: 3px solid rgba(255, 140, 0, 0.28);
-    background-color: rgba(12, 6, 18, 0.96);
-}
-
-#gameCanvas {
-    width: 100%;
-    max-width: 900px;
-    display: block;
-    background-color: #060308;
-    border: 3px solid rgba(255, 140, 0, 0.4);
-}
-
-.game-grid {
-    display: grid;
-    gap: 2px;
-    width: 100%;
-    max-width: 640px;
-    margin: 0 auto;
-    border: 3px solid rgba(255, 140, 0, 0.28);
-    background-color: #0b050f;
-}
-
-.game-cell {
-    width: 32px;
-    height: 32px;
-    background-color: #13080f;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text);
-    font-size: 0.85rem;
-    cursor: pointer;
-    user-select: none;
-}
-
-.game-cell.revealed {
-    background-color: #211119;
-}
-
-.hidden {
-    display: none !important;
-}
-
 .section {
     padding: 80px 24px;
     max-width: 1180px;
@@ -321,164 +244,9 @@ a {
     border: 2px solid rgba(255, 145, 0, 0.28);
 }
 
-.skill-pill {
-    display: inline-flex;
-    margin: 10px 10px 0 0;
-    padding: 10px 14px;
-    background-color: rgba(255, 127, 17, 0.16);
-    border: 2px solid rgba(255, 146, 40, 0.28);
-    color: var(--accent-bright);
-    font-size: 0.95rem;
-}
-
-.section p,
-.skill-pill,
-.footer-copy p,
-.footer-item,
-.nav-link,
-.card-meta {
-    font-weight: 400;
-}
-
 .section p {
     color: var(--text-muted);
     line-height: 1.8;
-}
-
-.intro-grid,
-.about-grid,
-.skills-columns,
-.projects-grid,
-.achievements-grid,
-.contact-grid,
-.card-grid {
-    display: grid;
-    gap: 24px;
-}
-
-.intro-grid,
-.card-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-.about-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-.skills-columns {
-    grid-template-columns: repeat(3, minmax(240px, 1fr));
-}
-
-.contact-grid {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-
-.section-panel,
-.about-card,
-.skill-block,
-.achievement-item,
-.project-card,
-.footer-box,
-.card-panel,
-.contact-card {
-    padding: 26px;
-    background-color: rgba(12, 6, 18, 0.98);
-    border: 3px solid rgba(255, 140, 0, 0.28);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 45px rgba(0,0,0,0.32);
-}
-
-.section-panel {
-    padding: 32px;
-    background-color: rgba(16, 10, 20, 0.96);
-    border: 3px dashed rgba(255, 128, 30, 0.32);
-}
-
-.section-panel p {
-    margin: 16px 0 0;
-}
-
-.card-panel {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 260px;
-    justify-content: space-between;
-}
-
-.card-meta,
-.section-note,
-.detail-text,
-.footer-item {
-    color: var(--text-muted);
-    margin-top: 12px;
-}
-
-.section-highlight {
-    display: inline-flex;
-    padding: 10px 14px;
-    background-color: rgba(255, 120, 20, 0.16);
-    border: 2px solid rgba(255, 145, 0, 0.28);
-    color: var(--accent-bright);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.82rem;
-}
-
-.skill-pill {
-    display: inline-flex;
-    margin: 10px 10px 0 0;
-    padding: 10px 14px;
-    background-color: rgba(255, 127, 17, 0.16);
-    border: 2px solid rgba(255, 146, 40, 0.28);
-    color: var(--accent-bright);
-    font-size: 0.95rem;
-}
-
-.project-card {
-    position: relative;
-    overflow: hidden;
-    min-height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.project-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 24px;
-}
-
-.link {
-    display: inline-flex;
-    padding: 12px 16px;
-    text-decoration: none;
-    color: var(--text);
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.link:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 121, 18, 0.18);
-}
-
-.project-card-1 {
-    background-color: rgba(255, 124, 24, 0.15);
-}
-
-.project-card-2 {
-    background-color: rgba(255, 76, 0, 0.16);
-}
-
-.project-card-3 {
-    background-color: rgba(255, 206, 91, 0.16);
-}
-
-.project-card-4 {
-    background-color: rgba(255, 75, 125, 0.16);
 }
 
 .footer {
@@ -486,6 +254,17 @@ a {
     margin-top: 24px;
     background-color: #0a050b;
     border-top: 4px solid rgba(255, 150, 40, 0.42);
+}
+
+.site-footer {
+    padding: 46px 24px 60px;
+    margin-top: 24px;
+    background-color: #0a050b;
+    border-top: 4px solid rgba(255, 150, 40, 0.42);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 18px;
 }
 
 .footer-copy,
@@ -538,6 +317,14 @@ a {
     animation-delay: 0.18s;
 }
 
+.delay-2 {
+    animation-delay: 0.34s;
+}
+
+.delay-3 {
+    animation-delay: 0.5s;
+}
+
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -558,14 +345,6 @@ a {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.delay-2 {
-    animation-delay: 0.34s;
-}
-
-.delay-3 {
-    animation-delay: 0.5s;
 }
 
 @keyframes fadeUp {

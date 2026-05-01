@@ -1,0 +1,165 @@
+
+.game-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.game-selector button {
+    padding: 10px 18px;
+    border: 2px solid rgba(255, 145, 0, 0.28);
+    background-color: rgba(0, 0, 0, 0.08);
+    color: var(--text);
+    cursor: pointer;
+    font-family: 'VPCH2', sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.game-selector button.active {
+    background-color: rgba(255, 110, 8, 0.22);
+    color: #fff;
+}
+
+.game-display {
+    display: grid;
+    gap: 24px;
+}
+
+.game-info {
+    padding: 18px;
+    border: 3px solid rgba(255, 140, 0, 0.28);
+    background-color: rgba(12, 6, 18, 0.96);
+    font-size: 1rem;
+}
+
+.game-control-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.game-control-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: var(--text);
+    background-color: rgba(255, 255, 255, 0.04);
+    padding: 12px 14px;
+    border: 2px solid rgba(255, 145, 0, 0.18);
+}
+
+.game-control-row select,
+.game-control-row input[type="checkbox"] {
+    font-size: 1rem;
+    padding: 10px 12px;
+    color: var(--text);
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 145, 0, 0.22);
+}
+
+.game-scoreboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.game-score-item {
+    flex: 1 1 180px;
+    padding: 14px 16px;
+    border: 2px solid rgba(255, 145, 0, 0.22);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.game-panel {
+    position: relative;
+}
+
+.game-over-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(4, 2, 8, 0.88);
+}
+
+.game-over-panel {
+    width: min(520px, 100%);
+    padding: 28px 26px;
+    background-color: rgba(12, 6, 18, 0.98);
+    border: 3px solid rgba(255, 140, 0, 0.38);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+    text-align: center;
+}
+
+.game-over-panel h2 {
+    margin: 0 0 14px;
+    font-size: 1.8rem;
+    color: #ffd87f;
+}
+
+.game-over-panel p {
+    margin: 0 0 22px;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+.game-over-panel button {
+    min-width: 180px;
+}
+
+.game-over-overlay.hidden {
+    display: none !important;
+}
+
+#gameCanvas {
+    width: 100%;
+    max-width: 900px;
+    display: block;
+    background-color: #060308;
+    border: 3px solid rgba(255, 140, 0, 0.4);
+}
+
+.game-grid {
+    display: grid;
+    gap: 2px;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    border: 3px solid rgba(255, 140, 0, 0.28);
+    background-color: #0b050f;
+}
+
+.game-cell {
+    width: 32px;
+    height: 32px;
+    background-color: #13080f;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 0.85rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.game-cell.revealed {
+    background-color: #211119;
+}
+
+.hidden {
+    display: none !important;
+}
