@@ -1,6 +1,4 @@
 
-import './styles/main.scss';
-
 const typedTextElement = document.querySelector('.typed');
 const textData = typedTextElement ? typedTextElement.dataset.text.split('|') : [];
 const typingSpeed = 80;
@@ -15,6 +13,153 @@ let gameData = {};
 const canvas = document.querySelector('#gameCanvas');
 const ctx = canvas ? canvas.getContext('2d') : null;
 
+function initHeaderGlow() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    const joltStorageKey = 'siteHeaderJolt';
+    const glowStorageKey = 'siteHeaderGlow';
+
+    const applyJolt = (jolt) => {
+        header.style.setProperty('--jolt-x', `${jolt.x}px`);
+        header.style.setProperty('--jolt-y', `${jolt.y}px`);
+        header.style.setProperty('--jolt-angle', `${jolt.angle}deg`);
+        header.classList.add('is-displaced');
+    };
+
+    try {
+        const savedJolt = JSON.parse(sessionStorage.getItem(joltStorageKey) || 'null');
+        if (
+            savedJolt &&
+            Number.isFinite(savedJolt.x) &&
+            Number.isFinite(savedJolt.y) &&
+            Number.isFinite(savedJolt.angle)
+        ) {
+            applyJolt(savedJolt);
+        }
+    } catch {
+        // Ignore unavailable session storage.
+    }
+
+    let currentX = header.clientWidth / 2;
+    let currentY = header.clientHeight / 2;
+    let targetX = currentX;
+    let targetY = currentY;
+    let animationFrame = null;
+
+    const applyGlow = (x, y) => {
+        currentX = x;
+        currentY = y;
+        targetX = x;
+        targetY = y;
+        header.style.setProperty('--glow-x', `${x}px`);
+        header.style.setProperty('--glow-y', `${y}px`);
+    };
+
+    try {
+        const savedGlow = JSON.parse(sessionStorage.getItem(glowStorageKey) || 'null');
+        if (
+            savedGlow &&
+            Number.isFinite(savedGlow.x) &&
+            Number.isFinite(savedGlow.y) &&
+            savedGlow.x >= 0 &&
+            savedGlow.x <= 1 &&
+            savedGlow.y >= 0 &&
+            savedGlow.y <= 1
+        ) {
+            applyGlow(savedGlow.x * header.clientWidth, savedGlow.y * header.clientHeight);
+        } else {
+            applyGlow(currentX, currentY);
+        }
+    } catch {
+        applyGlow(currentX, currentY);
+    }
+
+    const saveGlow = () => {
+        try {
+            sessionStorage.setItem(
+                glowStorageKey,
+                JSON.stringify({
+                    x: header.clientWidth ? currentX / header.clientWidth : 0.5,
+                    y: header.clientHeight ? currentY / header.clientHeight : 0.5
+                })
+            );
+        } catch {
+            // Ignore unavailable session storage.
+        }
+    };
+
+    const animateGlow = () => {
+        currentX += (targetX - currentX) * 0.16;
+        currentY += (targetY - currentY) * 0.16;
+        header.style.setProperty('--glow-x', `${currentX}px`);
+        header.style.setProperty('--glow-y', `${currentY}px`);
+
+        if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+            animationFrame = requestAnimationFrame(animateGlow);
+        } else {
+            animationFrame = null;
+        }
+    };
+
+    const startGlowAnimation = () => {
+        if (animationFrame === null) animationFrame = requestAnimationFrame(animateGlow);
+    };
+
+    document.addEventListener('pointermove', (event) => {
+        const rect = header.getBoundingClientRect();
+        targetX = event.clientX - rect.left;
+        targetY = event.clientY - rect.top;
+        header.classList.add('is-glowing');
+        saveGlow();
+        startGlowAnimation();
+    });
+
+    const startKeyboardPress = (link) => {
+        const distance = 2 + Math.random() * 3;
+        const direction = Math.random() * Math.PI * 2;
+        const angle = (Math.random() * 2 - 1) * 1.4;
+        const jolt = {
+            x: Math.cos(direction) * distance,
+            y: Math.sin(direction) * distance,
+            angle
+        };
+        header.classList.add('is-smoothing');
+        link.classList.add('is-pressed');
+        currentX = targetX;
+        currentY = targetY;
+        saveGlow();
+        applyJolt(jolt);
+        try {
+            sessionStorage.setItem(joltStorageKey, JSON.stringify(jolt));
+        } catch {
+            // Ignore unavailable session storage.
+        }
+    };
+
+    header.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+        const link = event.target.closest('.nav-link');
+        if (link) startKeyboardPress(link);
+    });
+
+    header.addEventListener('click', (event) => {
+        const link = event.target.closest('.nav-link');
+        if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        event.preventDefault();
+        if (!link.classList.contains('is-pressed')) startKeyboardPress(link);
+
+        const destination = link.href;
+        setTimeout(() => {
+            link.classList.remove('is-pressed');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => window.location.assign(destination));
+            });
+        }, 380);
+    });
+}
+
 function getCanvasPoint(event) {
     if (!canvas) return null;
     const rect = canvas.getBoundingClientRect();
@@ -27,6 +172,7 @@ function getCanvasPoint(event) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    initHeaderGlow();
     if (typedTextElement && textData.length) {
         updateText();
     }

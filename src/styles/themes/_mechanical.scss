@@ -1,0 +1,246 @@
+:root {
+    color-scheme: dark;
+    --bg: #090807;
+    --surface: #17130f;
+    --surface-strong: #231d16;
+    --border: #65513a;
+    --text: #e8dfcf;
+    --text-muted: #aa9b83;
+    --accent-cyan: #9db9aa;
+    --accent-magenta: #c27d45;
+    --accent-blue: #bf9a5b;
+    --accent-orange: #c27d45;
+    --accent-yellow: #d7b56b;
+    --metal-dark: #1b1712;
+    --metal-mid: #6c5b45;
+    --shadow: 8px 8px 0 rgba(0, 0, 0, 0.42), 0 0 26px rgba(194, 125, 69, 0.14);
+}
+
+body {
+    background-color: var(--bg);
+    background-image:
+    linear-gradient(135deg, rgba(255, 224, 161, 0.06), transparent 34%),
+    repeating-linear-gradient(0deg, rgba(255, 239, 205, 0.035) 0, rgba(255, 239, 205, 0.035) 1px, transparent 1px, transparent 5px),
+    linear-gradient(90deg, rgba(194, 125, 69, 0.11), transparent 22%, transparent 78%, rgba(215, 181, 107, 0.08));
+}
+
+body::before {
+    opacity: 0.12;
+    background: repeating-linear-gradient(to bottom, rgba(255, 232, 192, 0.22) 0, rgba(255, 232, 192, 0.22) 1px, transparent 1px, transparent 5px);
+}
+
+.nav-link {
+    filter: drop-shadow(0 2px 1px rgba(40, 40, 40, 0.45));
+}
+
+.hero-glow {
+    background:
+        radial-gradient(circle at 18% 16%, rgba(239, 123, 33, 0.24), transparent 34%),
+        radial-gradient(circle at 84% 12%, rgba(245, 183, 45, 0.26), transparent 36%);
+}
+
+.hero-content,
+.hero-body {
+    background: linear-gradient(145deg, rgba(48, 39, 29, 0.96), rgba(17, 14, 11, 0.98));
+    border: 2px solid #725a3e;
+    box-shadow: var(--shadow);
+}
+
+.hero-content::before,
+.hero-body::before {
+    background: linear-gradient(90deg, rgba(194, 125, 69, 0.72), rgba(215, 181, 107, 0.7));
+    opacity: 0.28;
+}
+
+.hero h1,
+.section h2,
+.section h3,
+.footer-copy h2,
+.section-title,
+.segment-title {
+    color: #e9dcc4;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.7), 0 0 14px rgba(194, 125, 69, 0.28);
+}
+
+.hero-name,
+.hero-role,
+.hero-copy,
+.section p,
+.card-meta,
+.section-note,
+.detail-text,
+.footer-item,
+.project-meta {
+    color: var(--text);
+}
+
+.eyebrow,
+.hero-label,
+.section-label,
+.section-highlight {
+    color: #814400;
+    text-shadow: none;
+}
+
+.section-label,
+.section-highlight,
+.project-tag {
+    background: linear-gradient(180deg, #b9975d, #6d5030);
+    border: 2px solid #8c6b3d;
+    color: #170f08;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+}
+
+.section-panel,
+.about-card,
+.skill-block,
+.achievement-item,
+.project-card,
+.footer-box,
+.card-panel,
+.contact-card {
+    background: linear-gradient(145deg, rgba(44, 35, 25, 0.96), rgba(20, 16, 12, 0.96));
+    border: 2px solid #65513a;
+    box-shadow: var(--shadow);
+}
+
+.section-panel {
+    background: linear-gradient(135deg, rgba(245, 183, 45, 0.22), rgba(239, 123, 33, 0.12));
+    border-style: dashed;
+}
+
+.project-card-1,
+.project-card-2,
+.project-card-3,
+.project-card-4 {
+    background: linear-gradient(145deg, rgba(247, 247, 241, 0.96), rgba(239, 123, 33, 0.18));
+}
+
+.skill-pill,
+.btn,
+.link {
+    color: #e8dfcf;
+    background: linear-gradient(180deg, #403326, #211a13);
+    border: 2px solid #806646;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+}
+
+.btn-primary {
+    color: #1d1309;
+    background: linear-gradient(180deg, #d8b56b, #8d6135);
+    border-color: #b28a4f;
+    box-shadow: 3px 3px 0 #392513, 0 0 14px rgba(215, 181, 107, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(180deg, #514331, #282017);
+}
+
+.btn:hover,
+.btn:focus,
+.link:hover {
+    background: linear-gradient(180deg, #e0bd73, #a36e3b);
+    color: #1d1309;
+    box-shadow: 3px 3px 0 #392513, 0 0 16px rgba(194, 125, 69, 0.45);
+}
+
+.footer,
+.site-footer {
+    background: linear-gradient(180deg, #777875, #4d4e4d);
+    color: #f4f1e7;
+    border-top: 3px solid #e99a24;
+    box-shadow: 0 -8px 22px rgba(239, 123, 33, 0.2);
+}
+
+.footer p,
+.footer-copy p,
+.site-footer p,
+.footer-link {
+    color: #f4f1e7;
+}
+
+.footer-link:hover {
+    color: #ffd86a;
+    border-color: #ffd86a;
+    text-shadow: 0 0 10px rgba(255, 216, 106, 0.8);
+}
+
+.game-selector button,
+.game-control-row label,
+.game-score-item,
+.game-info {
+    color: var(--text);
+    background: linear-gradient(145deg, #f3f3ed, #b8b8b3);
+    border: 2px solid #70716f;
+    box-shadow: 3px 3px 0 rgba(66, 66, 63, 0.28);
+}
+
+.game-selector button.active {
+    color: #4e2b00;
+    background: linear-gradient(180deg, #ffd86a, #eb961f);
+    border-color: #a15f0c;
+    text-shadow: none;
+    box-shadow: 3px 3px 0 #80531a, 0 0 14px rgba(245, 183, 45, 0.45);
+}
+
+.game-control-row select,
+.game-control-row input[type='checkbox'] {
+    color: #353635;
+    background-color: #f1f1ec;
+    border: 2px solid #777875;
+}
+
+#gameCanvas {
+    background-color: #3b3c3b;
+    border: 3px solid #676865;
+    box-shadow: 8px 8px 0 rgba(48, 48, 48, 0.25), 0 0 18px rgba(239, 123, 33, 0.24);
+}
+
+.game-grid {
+    background-color: #777875;
+    border: 3px solid #5c5d5b;
+    box-shadow: 8px 8px 0 rgba(48, 48, 48, 0.25), 0 0 18px rgba(239, 123, 33, 0.2);
+}
+
+.game-cell {
+    background: linear-gradient(145deg, #ededE8, #aaa9a5);
+    border-color: rgba(74, 74, 71, 0.35);
+    color: #343534;
+}
+
+.game-cell.revealed {
+    background: #d0d0cb;
+}
+
+.game-over-overlay {
+    background: rgba(57, 58, 57, 0.78);
+}
+
+.game-over-panel {
+    background: linear-gradient(145deg, #f2f2ed, #b8b8b3);
+    border: 2px solid #70716f;
+    box-shadow: var(--shadow);
+}
+
+.game-over-panel h2 {
+    color: #343536;
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.62), 0 0 14px rgba(239, 123, 33, 0.28);
+}
+
+.home-page {
+    background: #d2cec9;
+}
+
+.home-page::before {
+    display: none;
+}
+
+.home-page .page-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-page .footer {
+    margin-top: auto;
+}

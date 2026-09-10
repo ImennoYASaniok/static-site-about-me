@@ -8,19 +8,20 @@
 }
 
 .game-selector button {
-    padding: 10px 18px;
-    border: 2px solid rgba(255, 145, 0, 0.28);
-    background-color: rgba(0, 0, 0, 0.08);
+    padding: 9px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.03);
     color: var(--text);
     cursor: pointer;
-    font-family: 'VPCH2', sans-serif;
-    letter-spacing: 0.18em;
+    font-family: var(--font-secondary);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
 .game-selector button.active {
-    background-color: rgba(255, 110, 8, 0.22);
+    background: linear-gradient(90deg, rgba(0, 220, 255, 0.16), rgba(255, 44, 120, 0.16));
     color: #fff;
+    text-shadow: -1px 0 var(--accent-blue), 1px 0 var(--accent-magenta);
 }
 
 .game-display {
@@ -30,9 +31,10 @@
 
 .game-info {
     padding: 18px;
-    border: 3px solid rgba(255, 140, 0, 0.28);
-    background-color: rgba(12, 6, 18, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
     font-size: 1rem;
+    box-shadow: var(--shadow);
 }
 
 .game-control-row {
@@ -49,18 +51,18 @@
     gap: 10px;
     font-size: 1rem;
     color: var(--text);
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: rgba(255, 255, 255, 0.03);
     padding: 12px 14px;
-    border: 2px solid rgba(255, 145, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .game-control-row select,
 .game-control-row input[type="checkbox"] {
     font-size: 1rem;
-    padding: 10px 12px;
+    padding: 8px 10px;
     color: var(--text);
-    background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 145, 0, 0.22);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .game-scoreboard {
@@ -73,8 +75,8 @@
 .game-score-item {
     flex: 1 1 180px;
     padding: 14px 16px;
-    border: 2px solid rgba(255, 145, 0, 0.22);
-    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background-color: rgba(255, 255, 255, 0.03);
     color: var(--text);
     font-size: 1rem;
     letter-spacing: 0.05em;
@@ -92,22 +94,23 @@
     align-items: center;
     justify-content: center;
     padding: 24px;
-    background: rgba(4, 2, 8, 0.88);
+    background: rgba(3, 3, 6, 0.9);
 }
 
 .game-over-panel {
     width: min(520px, 100%);
     padding: 28px 26px;
-    background-color: rgba(12, 6, 18, 0.98);
-    border: 3px solid rgba(255, 140, 0, 0.38);
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+    background-color: rgba(10, 10, 12, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    box-shadow: var(--shadow);
     text-align: center;
 }
 
 .game-over-panel h2 {
     margin: 0 0 14px;
     font-size: 1.8rem;
-    color: #ffd87f;
+    color: #fff;
+    text-shadow: -1px 0 var(--accent-blue), 1px 0 var(--accent-magenta);
 }
 
 .game-over-panel p {
@@ -128,8 +131,9 @@
     width: 100%;
     max-width: 900px;
     display: block;
-    background-color: #060308;
-    border: 3px solid rgba(255, 140, 0, 0.4);
+    background-color: #07070a;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    box-shadow: var(--shadow);
 }
 
 .game-grid {
@@ -138,14 +142,14 @@
     width: 100%;
     max-width: 640px;
     margin: 0 auto;
-    border: 3px solid rgba(255, 140, 0, 0.28);
-    background-color: #0b050f;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background-color: #0a0b10;
 }
 
 .game-cell {
     width: 32px;
     height: 32px;
-    background-color: #13080f;
+    background-color: #0e0f14;
     border: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
@@ -157,7 +161,7 @@
 }
 
 .game-cell.revealed {
-    background-color: #211119;
+    background-color: #161924;
 }
 
 .hidden {

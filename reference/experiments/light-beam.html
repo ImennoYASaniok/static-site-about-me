@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atmospheric Light Environment Test</title>
+
+    <style>
+        @font-face {
+            font-family: "Advaken Sans";
+            src: local("Advaken Sans"), local("AdvakenSans"), url("/fonts/Advaken Sans.otf") format("opentype");
+            font-display: swap;
+        }
+
+        :root {
+            --bg: #010205;
+            --text: #ffffff;
+            --pink: 255, 80, 175;
+            --violet: 155, 80, 220;
+            --orange: 255, 120, 50;
+            --cyan: 0, 215, 250;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body { width: 100%; height: 100%; }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(15, 35, 55, 0.35), transparent 70%), var(--bg);
+            color: var(--text);
+        }
+
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        /* The field is the hard vertical mask: every beam layer is clipped here. */
+        .title-wrap {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: min(100vw, 1500px);
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            isolation: isolate;
+        }
+
+        .beam-field {
+            position: absolute;
+            z-index: -1;
+            top: -8%;
+            bottom: -8%;
+            left: -12vw;
+            right: -12vw;
+            overflow: hidden;
+            pointer-events: none;
+            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+        }
+
+        .light-bands { position: absolute; inset: 0; z-index: 2; }
+
+        .streak {
+            position: absolute;
+            height: 1px;
+            border-radius: 999px;
+            mix-blend-mode: screen;
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-in), #000 var(--fade-out), transparent);
+            mask-image: linear-gradient(to right, transparent, #000 var(--fade-in), #000 var(--fade-out), transparent);
+        }
+
+        .streak::before,
+        .streak::after {
+            content: "";
+            position: absolute;
+            left: -8%;
+            right: -8%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: inherit;
+        }
+
+        .streak::before { height: 7px; filter: blur(4px); opacity: 0.75; }
+        .streak::after { height: 15px; filter: blur(9px); opacity: 0.3; }
+
+        .volume-ray {
+            position: absolute;
+            height: 4px;
+            border-radius: 999px;
+            mix-blend-mode: screen;
+            filter: blur(12px);
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 16%, #000 82%, transparent);
+            mask-image: linear-gradient(to right, transparent, #000 16%, #000 82%, transparent);
+        }
+
+        .environment-line {
+            position: absolute;
+            left: -5%;
+            width: 110%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(var(--violet), 0.6), rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0.35;
+        }
+
+        .title {
+            position: relative;
+            margin: 0;
+            white-space: nowrap;
+            font-family: "Advaken Sans", "Arial Narrow", Arial, sans-serif;
+            font-size: clamp(2.5rem, 8vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        .scanlines {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0.15;
+            background: repeating-linear-gradient(to bottom, transparent 0, transparent 6px, rgba(255, 255, 255, 0.025) 7px, transparent 8px);
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="scene">
+
+    <!-- ТЕКСТ -->
+    <div class="title-wrap">
+        <div class="beam-field">
+            <div class="light-bands" id="lightBands"></div>
+        </div>
+        <h1 class="title">
+            ЛОРЕМ ИПСУМ 6000
+        </h1>
+    </div>
+
+
+    <!-- Сканирующие линии -->
+    <div class="scanlines"></div>
+
+</div>
+
+
+
+<script>
+
+    const container = document.getElementById("lightBands");
+
+    let seed = 48271;
+    const random = () => {
+        seed = (seed * 16807) % 2147483647;
+        return (seed - 1) / 2147483646;
+    };
+
+    const colors = [
+        "255, 80, 175",
+        "155, 80, 220",
+        "255, 120, 50",
+        "0, 215, 250",
+        "255, 255, 255"
+    ];
+
+    for (let i = 0; i < 46; i++) {
+        const streak = document.createElement("div");
+        const centerDistance = Math.abs(i - 23) / 23;
+        const direction = random() > 0.5 ? 1 : -1;
+        const y = 50 + direction * Math.pow(random(), 1.45) * 43 + (random() - 0.5) * 2.8;
+        const firstColor = colors[Math.floor(random() * colors.length)];
+        const secondColor = colors[Math.floor(random() * colors.length)];
+        const thirdColor = colors[Math.floor(random() * colors.length)];
+        const fadeIn = 8 + random() * 18;
+        const fadeOut = 78 + random() * 15;
+
+        streak.className = "streak";
+        streak.style.top = `${y}%`;
+        streak.style.left = `${-8 + random() * 7}%`;
+        streak.style.width = `${108 + random() * 18}%`;
+        streak.style.height = `${0.7 + random() * (centerDistance < 0.35 ? 2.2 : 1.2)}px`;
+        streak.style.opacity = `${0.18 + (1 - centerDistance) * 0.58 + random() * 0.18}`;
+        streak.style.setProperty("--fade-in", `${fadeIn}%`);
+        streak.style.setProperty("--fade-out", `${fadeOut}%`);
+        streak.style.filter = `blur(${random() * 0.7}px)`;
+        streak.style.background = `linear-gradient(90deg,
+            rgba(${firstColor}, 0) 0%,
+            rgba(${firstColor}, ${0.35 + random() * 0.5}) ${15 + random() * 12}%,
+            rgba(${secondColor}, ${0.45 + random() * 0.45}) ${36 + random() * 14}%,
+            rgba(${thirdColor}, ${0.35 + random() * 0.55}) ${55 + random() * 17}%,
+            rgba(${firstColor}, ${0.25 + random() * 0.45}) ${78 + random() * 10}%,
+            rgba(${thirdColor}, 0) 100%)`;
+
+        container.appendChild(streak);
+    }
+
+    for (let i = 0; i < 11; i++) {
+        const ray = document.createElement("div");
+        const direction = random() > 0.5 ? 1 : -1;
+        const y = 50 + direction * Math.pow(random(), 1.25) * 32;
+        const colorA = colors[Math.floor(random() * colors.length)];
+        const colorB = colors[Math.floor(random() * colors.length)];
+
+        ray.className = "volume-ray";
+        ray.style.top = `${y}%`;
+        ray.style.left = `${-8 + random() * 16}%`;
+        ray.style.width = `${90 + random() * 35}%`;
+        ray.style.height = `${3 + random() * 8}px`;
+        ray.style.opacity = `${0.07 + random() * 0.13}`;
+        ray.style.background = `linear-gradient(90deg, transparent, rgba(${colorA}, 0.5) 30%, rgba(${colorB}, 0.75) 53%, rgba(${colorA}, 0.35) 75%, transparent)`;
+        container.appendChild(ray);
+    }
+
+    const environmentLines = [
+        { y: 12, opacity: 0.18 },
+        { y: 27, opacity: 0.26 },
+        { y: 39, opacity: 0.32 },
+        { y: 58, opacity: 0.3 },
+        { y: 73, opacity: 0.22 },
+        { y: 88, opacity: 0.14 }
+    ];
+
+    environmentLines.forEach(line => {
+        const element = document.createElement("div");
+        element.className = "environment-line";
+        element.style.top = `${line.y}%`;
+        element.style.opacity = line.opacity;
+        container.appendChild(element);
+    });
+
+</script>
+
+</body>
+</html>

@@ -4,8 +4,12 @@ import {resolve} from 'node:path';
 
 export default defineConfig(({mode}) => {
     const isProd = mode === 'production';
+    const port = 5174;
 
     return {
+        server: {
+            port: port
+        },
         base: isProd ? '/static-site-about-me/' : '/',
         build: {
             rollupOptions: {

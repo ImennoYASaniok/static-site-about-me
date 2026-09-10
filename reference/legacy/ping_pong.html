@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пинг-понг с ботом</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            background-color: #000;
+            display: block;
+        }
+        .score {
+            position: absolute;
+            top: 20px;
+            font-size: 24px;
+            color: white;
+        }
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            font-size: 16px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="score" id="score">0 - 0</div>
+    <canvas id="gameCanvas" width="800" height="500"></canvas>
+    <div class="instructions">Используйте стрелки ВВЕРХ и ВНИЗ для управления ракеткой</div>
+
+    <script>
+        // Инициализация canvas и контекста
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+
+        // Размеры и позиции объектов
+        const paddleWidth = 10;
+        const paddleHeight = 100;
+        const ballSize = 10;
+
+        let playerPaddle = {
+            x: 10,
+            y: canvas.height / 2 - paddleHeight / 2,
+            width: paddleWidth,
+            height: paddleHeight,
+            dy: 0
+        };
+
+        let botPaddle = {
+            x: canvas.width - paddleWidth - 10,
+            y: canvas.height / 2 - paddleHeight / 2,
+            width: paddleWidth,
+            height: paddleHeight,
+            dy: 4,
+            speed: 4
+        };
+
+        let ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            size: ballSize,
+            dx: 5,
+            dy: 5
+        };
+
+        let score = {
+            player: 0,
+            bot: 0
+        };
+
+        // Управление клавиатурой
+        const keys = {
+            ArrowUp: false,
+            ArrowDown: false
+        };
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key in keys) {
+                keys[e.key] = true;
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key in keys) {
+                keys[e.key] = false;
+            }
+        });
+
+        // Логика бота средней сложности
+        function updateBotPaddle() {
+            // Бот пытается предсказать положение мяча
+            const predictedY = ball.y + (ball.dy * Math.abs(ball.x - botPaddle.x) / ball.dx);
+
+            // Добавляем случайный фактор для создания ошибок
+            const randomFactor = Math.random() > 0.7 ? (Math.random() * 20 - 10) : 0;
+
+            if (predictedY + randomFactor < botPaddle.y + botPaddle.height / 2) {
+                botPaddle.dy = -botPaddle.speed;
+            } else if (predictedY + randomFactor > botPaddle.y + botPaddle.height / 2) {
+                botPaddle.dy = botPaddle.speed;
+            } else {
+                botPaddle.dy = 0;
+            }
+
+            // Обновляем позицию ракетки бота
+            botPaddle.y += botPaddle.dy;
+
+            // Ограничиваем движение ракетки бота в пределах canvas
+            if (botPaddle.y < 0) {
+                botPaddle.y = 0;
+            } else if (botPaddle.y + botPaddle.height > canvas.height) {
+                botPaddle.y = canvas.height - botPaddle.height;
+            }
+        }
+
+        // Обновление мяча
+        function updateBall() {
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            // Столкновение с верхней и нижней границами
+            if (ball.y - ball.size / 2 < 0 || ball.y + ball.size / 2 > canvas.height) {
+                ball.dy = -ball.dy;
+            }
+
+            // Столкновение с ракетками
+            if (
+                ball.x - ball.size / 2 < playerPaddle.x + playerPaddle.width &&
+                ball.y > playerPaddle.y &&
+                ball.y < playerPaddle.y + playerPaddle.height
+            ) {
+                ball.dx = -ball.dx * 1.05; // Увеличиваем скорость мяча при отбивании
+                // Добавляем эффект отскока от ракетки
+                const hitPosition = (ball.y - (playerPaddle.y + playerPaddle.height / 2)) / (playerPaddle.height / 2);
+                ball.dy = hitPosition * 5;
+            }
+
+            if (
+                ball.x + ball.size / 2 > botPaddle.x &&
+                ball.y > botPaddle.y &&
+                ball.y < botPaddle.y + botPaddle.height
+            ) {
+                ball.dx = -ball.dx * 1.05; // Увеличиваем скорость мяча при отбивании
+                // Добавляем эффект отскока от ракетки
+                const hitPosition = (ball.y - (botPaddle.y + botPaddle.height / 2)) / (botPaddle.height / 2);
+                ball.dy = hitPosition * 5;
+            }
+
+            // Проверка на забитый мяч
+            if (ball.x - ball.size / 2 < 0) {
+                score.bot++;
+                resetBall();
+            } else if (ball.x + ball.size / 2 > canvas.width) {
+                score.player++;
+                resetBall();
+            }
+        }
+
+        // Сброс мяча в центр
+        function resetBall() {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            ball.dx = (Math.random() > 0.5 ? 1 : -1) * 5;
+            ball.dy = (Math.random() * 2 - 1) * 5;
+            scoreElement.textContent = `${score.player} - ${score.bot}`;
+        }
+
+        // Обновление ракетки игрока
+        function updatePlayerPaddle() {
+            if (keys.ArrowUp && playerPaddle.y > 0) {
+                playerPaddle.y -= 7;
+            }
+            if (keys.ArrowDown && playerPaddle.y < canvas.height - playerPaddle.height) {
+                playerPaddle.y += 7;
+            }
+        }
+
+        // Отрисовка объектов
+        function draw() {
+            // Очистка canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Отрисовка ракеток
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(playerPaddle.x, playerPaddle.y, playerPaddle.width, playerPaddle.height);
+            ctx.fillRect(botPaddle.x, botPaddle.y, botPaddle.width, botPaddle.height);
+
+            // Отрисовка мяча
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Отрисовка центральной линии
+            ctx.strokeStyle = '#fff';
+            ctx.setLineDash([10, 10]);
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2, 0);
+            ctx.lineTo(canvas.width / 2, canvas.height);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        // Основной игровой цикл
+        function gameLoop() {
+            updatePlayerPaddle();
+            updateBotPaddle();
+            updateBall();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Запуск игры
+        resetBall();
+        gameLoop();
+    </script>
+</body>
+</html>

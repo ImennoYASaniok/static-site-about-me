@@ -1,79 +1,60 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&lt;заполните это поле именем&gt;</title>
+    <title>Главная — Александр Попов</title>
+    <link rel="preload" as="image" href="/images/header/button_pressed_general.png">
+    <link rel="stylesheet" href="/src/styles/main.scss">
     <script type="module" src="/src/main.js"></script>
 </head>
-<body>
+
+<body class="home-page">
     <div class="page-shell">
         <header class="site-header">
-            <span class="brand">&lt;заполните это поле заголовком&gt;</span>
-            <nav class="site-nav">
+            <nav class="site-nav" aria-label="Основная навигация">
                 <a href="index.html" class="nav-link active">Главная</a>
                 <a href="about.html" class="nav-link">Обо мне</a>
                 <a href="projects.html" class="nav-link">Проекты</a>
-                <a href="games.html" class="nav-link">Игры</a>
                 <a href="contacts.html" class="nav-link">Контакты</a>
             </nav>
         </header>
 
-        <main>
-            <section class="hero" id="hero">
-                <div class="hero-glow"></div>
-                <div class="hero-content">
-                    <p class="eyebrow">Привет, система готова</p>
-                    <h1><span class="hero-name">&lt;заполните это поле именем&gt;</span></h1>
-                    <p class="hero-role">Я <span class="typed" data-text="&lt;заполните это поле ролью&gt;|&lt;заполните это поле специализацией&gt;|&lt;заполните это поле направлением&gt;"></span></p>
-                    <p class="hero-copy">&lt;заполните это поле кратким предложением о себе&gt;</p>
-                    <div class="hero-actions">
-                        <a href="about.html" class="btn btn-primary">Подробнее обо мне</a>
-                        <a href="projects.html" class="btn btn-secondary">Мои проекты</a>
-                    </div>
+        <main class="home-hero">
+            <div class="home-copy fade-up">
+                <p class="home-kicker">MEMORY CARD 01 / PROFILE</p>
+                <h1>Александр<br><span>Попов</span></h1>
+                <p class="home-role">Разработчик, создатель интерактивных интерфейсов и любитель экспериментировать с кодом.</p>
+                <p class="home-intro">Собираю сайты, игры и цифровые эксперименты с характером. Здесь можно посмотреть мои проекты, узнать больше обо мне и заглянуть в игровую комнату.</p>
+                <div class="home-actions">
+                    <a class="btn btn-primary" href="about.html">Обо мне</a>
+                    <a class="btn btn-secondary" href="projects.html">Проекты</a>
                 </div>
-            </section>
+                <p class="home-signal"><span></span> SYSTEM ONLINE // READY TO EXPLORE</p>
+            </div>
 
-            <section class="section intro-grid">
-                <div class="card-panel fade-up">
-                    <span class="section-highlight">Обзор</span>
-                    <h3>Моя матрица</h3>
-                    <p>&lt;заполните это поле о своей деятельности и стиле работы&gt;</p>
-                    <a href="about.html" class="link">Перейти к биографии</a>
+            <div class="home-portrait fade-up delay-1">
+                <div class="home-portrait-frame">
+                    <img src="/images/index/me_ps2.png" alt="Низкополигональный портрет Александра Попова">
                 </div>
-                <div class="card-panel fade-up delay-1">
-                    <span class="section-highlight">Проекты</span>
-                    <h3>Архив реализаций</h3>
-                    <p>&lt;заполните это поле о ведении проектов, хакатонах или задачах&gt;</p>
-                    <a href="projects.html" class="link">Посмотреть проекты</a>
-                </div>
-                <div class="card-panel fade-up delay-2">
-                    <span class="section-highlight">Контакты</span>
-                    <h3>Связаться</h3>
-                    <p>&lt;заполните это поле о том, как с вами можно связаться&gt;</p>
-                    <a href="contacts.html" class="link">Написать</a>
-                </div>
-            </section>
-
-            <section class="section section-panel fade-up delay-3">
-                <span class="section-label">Метка</span>
-                <h2>Ретро-брютал стиль</h2>
-                <p>&lt;заполните это поле про концепцию сайта: пиксели, советский ретрофутуризм и цифровой брутализм&gt;</p>
-            </section>
+                <p class="home-caption">PLAYER 01<br><span>LOW POLY ARCHIVE</span></p>
+            </div>
         </main>
 
         <footer class="footer">
             <div class="footer-copy fade-up">
-                <h2>Футер данных</h2>
-                <p>&lt;заполните это поле кратким слоганом для footer&gt;</p>
+                <h2>Продолжить просмотр</h2>
+                <p>Сайт постепенно растёт вместе с новыми проектами и экспериментами.</p>
             </div>
             <div class="footer-links fade-up delay-1">
-                <a href="contacts.html" class="footer-link">Telegram</a>
-                <a href="contacts.html" class="footer-link">GitHub</a>
-                <a href="contacts.html" class="footer-link">Email</a>
+                <a href="about.html" class="footer-link">Обо мне</a>
+                <a href="projects.html" class="footer-link">Проекты</a>
+                <a href="games.html" class="footer-link">Игры</a>
+                <a href="contacts.html" class="footer-link">Контакты</a>
             </div>
         </footer>
     </div>
-
 </body>
+
 </html>
